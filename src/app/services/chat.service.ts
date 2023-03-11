@@ -11,6 +11,7 @@ export class ChatService {
   list: IChat[];
   constructor(private http: HttpClient) {
     const chatList = JSON.parse(localStorage.getItem('chat-list') || '');
+    console.log(chatList);
     this.list = Array.isArray(chatList) ? chatList : [];
   }
 
