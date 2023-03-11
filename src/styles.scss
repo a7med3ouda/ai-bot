@@ -19,76 +19,33 @@ body {
   color-scheme: dark;
   color: var(--normal-off);
   background-color: var(--bg-off);
+
+  app-root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
 }
+
 button {
   outline: 0;
   border: 0;
   cursor: pointer;
   background-color: transparent;
+  &:disabled {
+    cursor: default;
+  }
+}
+
+input,
+button,
+textarea {
+  &:disabled {
+    opacity: 0.2;
+  }
 }
 
 svg {
   width: 2rem;
   height: 2rem;
-}
-
-.wrapper {
-  width: 100%;
-  padding: 15px;
-}
-.ai {
-  background-color: var(--bg);
-  .profile {
-    background-color: var(--secondary);
-  }
-}
-.chat {
-  width: 100%;
-  max-width: 1280px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  gap: 10px;
-}
-.profile {
-  width: 36px;
-  height: 36px;
-  border-radius: 5px;
-  background-color: var(--primary);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  img {
-    width: 60%;
-    height: 60%;
-    object-fit: contain;
-  }
-}
-.message {
-  flex: 1;
-  color: var(--normal);
-  font-size: 20px;
-  max-width: 100%;
-  overflow-x: scroll;
-  white-space: pre-wrap;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-}
-form {
-  width: 100%;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 10px;
-  background-color: var(--bg);
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  img {
-    width: 30px;
-    height: 30px;
-  }
 }

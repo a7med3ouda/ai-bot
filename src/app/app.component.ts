@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import IChat from './@types/IChat';
 import { generateId } from './@types/static';
+import { ChatService } from './services/chat.service';
 import { TypingService } from './services/typing.service';
 
 @Component({
@@ -10,21 +12,9 @@ import { TypingService } from './services/typing.service';
 export class AppComponent {
   title = 'ai-bot';
   responses = [];
-  isLoading = false;
-  chatList = [];
 
-  constructor(public typing: TypingService) {
-    setTimeout(() => {
-      typing.make('hello my friend .. how are you doing?');
-      console.log(generateId());
-      console.log(generateId());
-      console.log(generateId());
-      console.log(generateId());
-      console.log(generateId().length);
-    }, 3000);
-  }
-
-  handleSendMessage(e: any) {
-    e.preventDefault();
-  }
+  constructor(
+    public typingService: TypingService,
+    public chatService: ChatService
+  ) {}
 }

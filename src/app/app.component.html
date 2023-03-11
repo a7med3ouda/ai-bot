@@ -1,19 +1,37 @@
+<app-header class="header"></app-header>
+
 <div class="app">
   <div class="chat__container">
-    <app-loading *ngIf="!typing.text; else other_content"></app-loading>
-
-    <ng-template #other_content>{{ typing.text }}</ng-template>
+    <div
+      [class]="{ wrapper: true, ai: chat.isAi }"
+      *ngFor="let chat of chatService.list"
+    >
+      <div class="chat">
+        <div class="profile">
+          <app-bot-icon *ngIf="chat.isAi; else person"></app-bot-icon>
+          <ng-template #person>
+            <app-user-icon></app-user-icon>
+          </ng-template>
+        </div>
+        <div class="message" [id]="chat._id">
+          {{ chat.message }}
+        </div>
+      </div>
+    </div>
+    <div class="wrapper ai" *ngIf="chatService.isLoading">
+      <div class="chat">
+        <div class="profile">
+          <app-bot-icon></app-bot-icon>
+        </div>
+        <div class="message">
+          <app-loading
+            *ngIf="!typingService.isTyping; else other_content"
+          ></app-loading>
+          <ng-template #other_content>{{ typingService.text }}</ng-template>
+        </div>
+      </div>
+    </div>
   </div>
-  <form (submit)="handleSendMessage($event)">
-    <textarea
-      class="message__textarea"
-      name="message"
-      cols="1"
-      rows="1"
-      placeholder="Ask me..."
-    ></textarea>
-    <button type="submit">
-      <app-send-icon></app-send-icon>
-    </button>
-  </form>
 </div>
+
+<app-footer class="footer"></app-footer>
