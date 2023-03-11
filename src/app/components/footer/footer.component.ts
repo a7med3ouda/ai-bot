@@ -11,6 +11,7 @@ import { TypingService } from 'src/app/services/typing.service';
 })
 export class FooterComponent {
   message = '';
+  @Input() caputcha: string = '';
 
   constructor(
     public typingService: TypingService,
@@ -18,14 +19,16 @@ export class FooterComponent {
   ) {
     chatService.isLoading = true;
     setTimeout(async () => {
-      await typingService.make('hello my friend .. how are you doing?');
+      const msg =
+        "Hello, I'm AI Bot .. Created by Ahmed Ouda from ( https://ouddah.com ) .. How can I help you today?";
+      await typingService.make(msg);
       chatService.isLoading = false;
       chatService.list.push({
         _id: generateId(),
         isAi: true,
-        message: 'hello my friend .. how are you doing?',
+        message: msg,
       });
-    }, 3000);
+    }, 1500);
   }
 
   handleSendMessage(e?: SubmitEvent) {
@@ -33,12 +36,30 @@ export class FooterComponent {
     if (this.chatService.isLoading) return;
     const msg = this.message.trim();
     if (!msg) return;
+    this.chatService.isLoading = true;
     this.chatService.list.push({
       _id: generateId(),
       isAi: false,
       message: msg,
     });
     this.message = '';
+
+    this.chatService.sendMessage(msg, this.caputcha).subscribe({
+      next: async (res) => {
+        const message = res.message.trim();
+        await this.typingService.make(message);
+        this.chatService.list.push({
+          _id: generateId(),
+          isAi: true,
+          message: message,
+        });
+        this.chatService.isLoading = false;
+      },
+      error: (error) => {
+        console.log(error);
+        this.chatService.isLoading = false;
+      },
+    });
   }
 
   handleFormKeyDown(e: KeyboardEvent) {
