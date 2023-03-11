@@ -1,0 +1,15 @@
+.header__content {
+  padding-block: 8px;
+  text-align: center;
+  .title {
+    text-transform: uppercase;
+  }
+
+  .info {
+    a {
+      text-decoration: none;
+      font-weight: bold;
+      color: #18c2a8;
+    }
+  }
+}
