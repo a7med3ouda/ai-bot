@@ -11,10 +11,5 @@ import { TypingService } from './services/typing.service';
 })
 export class AppComponent {
   title = 'ai-bot';
-  responses = [];
-
-  constructor(
-    public typingService: TypingService,
-    public chatService: ChatService
-  ) {}
+  caputcha = '';
 }

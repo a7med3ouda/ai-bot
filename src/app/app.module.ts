@@ -10,6 +10,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ChatComponent } from './components/chat/chat.component';
+import { CaputchaComponent } from './components/caputcha/caputcha.component';
+import { NgHcaptchaModule } from 'ng-hcaptcha';
 
 @NgModule({
   declarations: [
@@ -20,8 +24,19 @@ import { FooterComponent } from './components/footer/footer.component';
     UserIconComponent,
     HeaderComponent,
     FooterComponent,
+    ChatComponent,
+    CaputchaComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    NgHcaptchaModule.forRoot({
+      siteKey: '63548551-867b-4f97-8697-a71f20b0b773',
+      // languageCode: 'en' // optional, will default to browser language
+    }),
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
