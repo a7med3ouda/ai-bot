@@ -49,10 +49,9 @@ export class FooterComponent {
         this.chatService.isLoading = false;
       },
       error: (error) => {
-        if (error.error.subject === 'caputcha') {
-          this.caputchaService.caputcha = '';
-        }
         this.chatService.isLoading = false;
+        this.caputchaService.caputcha = '';
+        alert(error.error.message);
       },
     });
   }
