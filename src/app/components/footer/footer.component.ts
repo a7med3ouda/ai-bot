@@ -1,6 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import IChat from 'src/app/@types/IChat';
-import { generateId } from 'src/app/@types/static';
+import { Component } from '@angular/core';
 import { CaputchaService } from 'src/app/services/caputcha.service';
 import { ChatService } from 'src/app/services/chat.service';
 import { TypingService } from 'src/app/services/typing.service';
@@ -40,7 +38,7 @@ export class FooterComponent {
     });
     this.message = '';
 
-    this.chatService.sendMessage(msg, this.caputchaService.caputcha).subscribe({
+    this.chatService.sendMessage(msg).subscribe({
       next: async (res) => {
         const message = res.message.trim();
         await this.typingService.make(message);
@@ -51,7 +49,6 @@ export class FooterComponent {
         this.chatService.isLoading = false;
       },
       error: (error) => {
-        alert(error.error.message);
         if (error.error.subject === 'caputcha') {
           this.caputchaService.caputcha = '';
         }

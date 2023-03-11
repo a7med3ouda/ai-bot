@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { CaputchaService } from 'src/app/services/caputcha.service';
 
 @Component({
@@ -10,7 +10,7 @@ export class CaputchaComponent {
   constructor(private cap: CaputchaService) {}
 
   onVerify(token: string) {
-    this.cap.caputcha = token;
+    this.cap.validate(token);
     // this.caputchaChange.emit(token);
   }
 

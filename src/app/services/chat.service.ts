@@ -14,7 +14,7 @@ export class ChatService {
     this.list = storedChat ? JSON.parse(storedChat) : [];
   }
 
-  addToChat({ isAi, message }: { isAi: boolean; message: string }) {
+  addToChat({ isAi, message }: IChat) {
     this.list.push({
       _id: generateId(),
       isAi,
@@ -24,17 +24,9 @@ export class ChatService {
     localStorage.setItem('chat-list', JSON.stringify(this.list));
   }
 
-  sendMessage(message: string, caputcha: string) {
-    return this.http.post<{ message: string }>(
-      '/api',
-      {
-        message,
-      },
-      {
-        headers: {
-          ['x-caputcha-token']: caputcha,
-        },
-      }
-    );
+  sendMessage(message: string) {
+    return this.http.post<{ message: string }>('/api/chat', {
+      message,
+    });
   }
 }

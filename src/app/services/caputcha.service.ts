@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -5,5 +6,26 @@ import { Injectable } from '@angular/core';
 })
 export class CaputchaService {
   caputcha = '';
-  constructor() {}
+  constructor(private http: HttpClient) {}
+
+  validate(token: string) {
+    this.http
+      .post(
+        '/api/caputcha',
+        {},
+        {
+          headers: {
+            ['x-caputcha-token']: this.caputcha,
+          },
+        }
+      )
+      .subscribe({
+        next: () => {
+          this.caputcha = token;
+        },
+        error: () => {
+          this.caputcha = '';
+        },
+      });
+  }
 }
