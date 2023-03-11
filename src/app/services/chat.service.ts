@@ -12,7 +12,7 @@ export class ChatService {
 
   sendMessage(message: string, caputcha: string) {
     return this.http.post<{ message: string }>(
-      'http://localhost:8090/api',
+      '/api',
       {
         message,
       },
