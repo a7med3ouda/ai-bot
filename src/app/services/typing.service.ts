@@ -9,17 +9,17 @@ export class TypingService {
 
   constructor() {}
 
-  make(str: string) {
+  make(message: string) {
     return new Promise((resolve, reject) => {
       this.text = '';
       this.isTyping = true;
       const interval = setInterval(() => {
         const index = this.text.length;
-        if (index < str.length) {
-          this.text += str[index];
+        if (index < message.length) {
+          this.text += message[index];
         } else {
           clearInterval(interval);
-          resolve(str);
+          resolve(message);
           this.isTyping = false;
           this.text = '';
         }
