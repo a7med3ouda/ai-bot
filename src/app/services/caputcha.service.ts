@@ -15,7 +15,7 @@ export class CaputchaService {
         {},
         {
           headers: {
-            ['x-caputcha-token']: this.caputcha,
+            ['x-caputcha-token']: token,
           },
         }
       )
