@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { CaputchaService } from 'src/app/services/caputcha.service';
 import { ChatService } from 'src/app/services/chat.service';
 import { TypingService } from 'src/app/services/typing.service';
 
@@ -13,8 +12,7 @@ export class FooterComponent {
 
   constructor(
     public typingService: TypingService,
-    public chatService: ChatService,
-    private caputchaService: CaputchaService
+    public chatService: ChatService
   ) {
     chatService.isLoading = true;
     setTimeout(async () => {
@@ -50,7 +48,6 @@ export class FooterComponent {
       },
       error: (error) => {
         this.chatService.isLoading = false;
-        this.caputchaService.caputcha = '';
         alert(error.error.message);
       },
     });
