@@ -10,9 +10,8 @@ export class ChatService {
   isLoading: boolean = false;
   list: IChat[];
   constructor(private http: HttpClient) {
-    const chatList = JSON.parse(localStorage.getItem('chat-list') || '');
-    console.log(chatList);
-    this.list = Array.isArray(chatList) ? chatList : [];
+    const storedChat = localStorage.getItem('chat-list');
+    this.list = storedChat ? JSON.parse(storedChat) : [];
   }
 
   addToChat({ isAi, message }: { isAi: boolean; message: string }) {
