@@ -1,7 +1,7 @@
 .header {
   position: sticky;
   top: 0;
-  background-color: var(--bg);
+  background-color: var(--bg-dark);
 }
 
 .app {
@@ -15,7 +15,7 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    padding-bottom: 20px;
+    padding-block: 8px;
     scroll-behavior: smooth;
 
     .wrapper {
@@ -75,4 +75,5 @@
 .footer {
   position: sticky;
   bottom: 0;
+  background-color: var(--bg-dark);
 }

@@ -5,6 +5,18 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--secondary);
+  }
+
+  scrollbar-color: var(--secondary) transparent;
 }
 
 body {
@@ -12,8 +24,9 @@ body {
   --normal-off: #dcdcdc;
   --primary: #5436da;
   --secondary: #10a37f;
-  --bg: #262121;
-  --bg-off: #262121bb;
+  --bg: #312b2b;
+  --bg-off: #433f3f;
+  --bg-dark: #1c1818;
 
   font-family: "Alegreya Sans", sans-serif;
   color-scheme: dark;
@@ -24,11 +37,6 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-    &::-webkit-scrollbar {
-      display: none;
-    }
   }
 }
 
