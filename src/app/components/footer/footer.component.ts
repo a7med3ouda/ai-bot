@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ChatService } from 'src/app/services/chat.service';
 import { TypingService } from 'src/app/services/typing.service';
@@ -46,9 +47,16 @@ export class FooterComponent {
         });
         this.chatService.isLoading = false;
       },
-      error: (error) => {
+      error: (error: HttpErrorResponse) => {
+        let message = '';
+        if (error.status === 429) {
+          message = error.error;
+        } else {
+          message = error.error.message;
+        }
+        console.log(error.error);
+        alert(message);
         this.chatService.isLoading = false;
-        alert(error.error.message);
       },
     });
   }
