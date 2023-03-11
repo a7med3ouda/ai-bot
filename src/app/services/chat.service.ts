@@ -11,6 +11,7 @@ export class ChatService {
   constructor(private http: HttpClient) {}
 
   sendMessage(message: string, caputcha: string) {
+    console.log(caputcha);
     return this.http.post<{ message: string }>(
       '/api',
       {
