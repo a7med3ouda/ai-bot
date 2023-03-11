@@ -1,0 +1,19 @@
+<form
+  class="send__message"
+  (submit)="handleSendMessage($event)"
+  (keydown)="handleFormKeyDown($event)"
+>
+  <textarea
+    class="message__textarea"
+    name="message"
+    cols="1"
+    rows="1"
+    placeholder="Ask me..."
+    [(ngModel)]="message"
+    (keydown)="handleFormKeyDown($event)"
+    [disabled]="chatService.isLoading"
+  ></textarea>
+  <button type="submit" [disabled]="chatService.isLoading">
+    <app-send-icon></app-send-icon>
+  </button>
+</form>
