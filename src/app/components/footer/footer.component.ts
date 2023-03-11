@@ -24,11 +24,7 @@ export class FooterComponent {
         "Hello, I'm AI Bot .. Created by Ahmed Ouda from ( https://ouddah.com ) .. How can I help you today?";
       await typingService.make(msg);
       chatService.isLoading = false;
-      chatService.list.push({
-        _id: generateId(),
-        isAi: true,
-        message: msg,
-      });
+      chatService.addToChat({ isAi: true, message: msg });
     }, 1500);
   }
 
@@ -38,8 +34,7 @@ export class FooterComponent {
     const msg = this.message.trim();
     if (!msg) return;
     this.chatService.isLoading = true;
-    this.chatService.list.push({
-      _id: generateId(),
+    this.chatService.addToChat({
       isAi: false,
       message: msg,
     });
@@ -49,8 +44,7 @@ export class FooterComponent {
       next: async (res) => {
         const message = res.message.trim();
         await this.typingService.make(message);
-        this.chatService.list.push({
-          _id: generateId(),
+        this.chatService.addToChat({
           isAi: true,
           message: message,
         });
