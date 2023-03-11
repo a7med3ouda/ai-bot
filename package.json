@@ -8,7 +8,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "prod": "git pull && yarn && yarn build && serve -l 6090 -s build"
+    "prod": "git pull && yarn && yarn build && serve -l 6090 -s dist/ai-bot"
   },
   "private": true,
   "dependencies": {
