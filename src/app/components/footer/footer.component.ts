@@ -57,7 +57,6 @@ export class FooterComponent {
         this.chatService.isLoading = false;
       },
       error: (error) => {
-        console.log(error);
         alert(error.error.message);
         this.chatService.isLoading = false;
       },

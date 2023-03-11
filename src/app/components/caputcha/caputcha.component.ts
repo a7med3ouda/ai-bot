@@ -11,7 +11,6 @@ export class CaputchaComponent {
 
   onVerify(token: string) {
     this.cap.caputcha = token;
-    console.log(token);
     // this.caputchaChange.emit(token);
   }
 
