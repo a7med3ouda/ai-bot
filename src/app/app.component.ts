@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import IChat from './@types/IChat';
 import { generateId } from './@types/static';
+import { CaputchaService } from './services/caputcha.service';
 import { ChatService } from './services/chat.service';
 import { TypingService } from './services/typing.service';
 
@@ -11,5 +12,5 @@ import { TypingService } from './services/typing.service';
 })
 export class AppComponent {
   title = 'ai-bot';
-  caputcha = '';
+  constructor(public caputchaService: CaputchaService) {}
 }

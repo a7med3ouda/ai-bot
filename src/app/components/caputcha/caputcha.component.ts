@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { CaputchaService } from 'src/app/services/caputcha.service';
 
 @Component({
   selector: 'app-caputcha',
@@ -6,20 +7,18 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./caputcha.component.scss'],
 })
 export class CaputchaComponent {
-  @Output() caputchaChange: EventEmitter<string> = new EventEmitter<string>();
-  @Input() caputcha: string = '';
+  constructor(private cap: CaputchaService) {}
 
   onVerify(token: string) {
-    this.caputchaChange.emit(token);
+    this.cap.caputcha = token;
+    // this.caputchaChange.emit(token);
   }
 
   onExpired(response: any) {
-    // The verification expired.
-    this.caputchaChange.emit('');
+    this.cap.caputcha = '';
   }
 
   onError(error: any) {
-    // An error occured during the verification process.
-    this.caputchaChange.emit('');
+    this.cap.caputcha = '';
   }
 }

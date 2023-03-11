@@ -2,13 +2,12 @@
 
 <app-caputcha
   class="caputcha__container"
-  *ngIf="!caputcha; else caputchaValid"
-  [(caputcha)]="caputcha"
+  *ngIf="!caputchaService.caputcha; else caputchaValid"
 >
 </app-caputcha>
 <ng-template #caputchaValid>
   <div class="app">
     <app-chat></app-chat>
   </div>
-  <app-footer class="footer" [caputcha]="caputcha"></app-footer>
+  <app-footer class="footer"></app-footer>
 </ng-template>
