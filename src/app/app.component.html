@@ -4,7 +4,7 @@
   <div class="chat__container">
     <div
       [class]="{ wrapper: true, ai: chat.isAi }"
-      *ngFor="let chat of chatService.list"
+      *ngFor="let chat of chatService.list; let last = last"
     >
       <div class="chat">
         <div class="profile">
@@ -17,6 +17,8 @@
           {{ chat.message }}
         </div>
       </div>
+
+      {{ last ? dump.scrollIntoView() : "" }}
     </div>
     <div class="wrapper ai" *ngIf="chatService.isLoading">
       <div class="chat">
@@ -28,10 +30,11 @@
             *ngIf="!typingService.isTyping; else other_content"
           ></app-loading>
           <ng-template #other_content>{{ typingService.text }}</ng-template>
+          {{ dump.scrollIntoView() }}
         </div>
       </div>
     </div>
   </div>
 </div>
-
+<div #dump></div>
 <app-footer class="footer"></app-footer>
