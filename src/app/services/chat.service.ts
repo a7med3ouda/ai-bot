@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import IChat from '../@types/IChat';
 
@@ -7,5 +8,19 @@ import IChat from '../@types/IChat';
 export class ChatService {
   isLoading: boolean = false;
   list: IChat[] = [];
-  constructor() {}
+  constructor(private http: HttpClient) {}
+
+  sendMessage(message: string, caputcha: string) {
+    return this.http.post<{ message: string }>(
+      'http://localhost:8090/api',
+      {
+        message,
+      },
+      {
+        headers: {
+          ['X-CAPUTCHA-TOKEN']: caputcha,
+        },
+      }
+    );
+  }
 }

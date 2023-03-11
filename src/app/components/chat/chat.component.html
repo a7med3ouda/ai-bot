@@ -1,0 +1,35 @@
+<div class="chat__container">
+  <div
+    [class]="{ wrapper: true, ai: chat.isAi }"
+    *ngFor="let chat of chatService.list; let last = last"
+  >
+    <div class="chat">
+      <div class="profile">
+        <app-bot-icon *ngIf="chat.isAi; else person"></app-bot-icon>
+        <ng-template #person>
+          <app-user-icon></app-user-icon>
+        </ng-template>
+      </div>
+      <div class="message" [id]="chat._id">
+        {{ chat.message }}
+      </div>
+    </div>
+
+    {{ last ? dump.scrollIntoView() : "" }}
+  </div>
+  <div class="wrapper ai" *ngIf="chatService.isLoading">
+    <div class="chat">
+      <div class="profile">
+        <app-bot-icon></app-bot-icon>
+      </div>
+      <div class="message">
+        <app-loading
+          *ngIf="!typingService.isTyping; else other_content"
+        ></app-loading>
+        <ng-template #other_content>{{ typingService.text }}</ng-template>
+        {{ dump.scrollIntoView() }}
+      </div>
+    </div>
+  </div>
+</div>
+<div #dump></div>
