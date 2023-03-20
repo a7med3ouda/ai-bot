@@ -57,3 +57,15 @@
     }
   }
 }
+
+.end__typing__btn {
+  position: absolute;
+  background-color: var(--secondary);
+  color: white;
+  padding: 0.5rem 1rem;
+  z-index: 2;
+  border-radius: 50px;
+  cursor: pointer;
+  left: 50%;
+  translate: -50%;
+}

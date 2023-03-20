@@ -12,4 +12,8 @@ export class ChatComponent {
     public typingService: TypingService,
     public chatService: ChatService
   ) {}
+
+  handleEndTyping() {
+    this.typingService.endTyping = true;
+  }
 }

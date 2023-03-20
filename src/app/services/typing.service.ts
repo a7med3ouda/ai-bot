@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class TypingService {
   text: string = '';
   isTyping: boolean = false;
+  endTyping: boolean = false;
 
   constructor() {}
 
@@ -15,12 +16,13 @@ export class TypingService {
       this.isTyping = true;
       const interval = setInterval(() => {
         const index = this.text.length;
-        if (index < message.length) {
+        if (index < message.length && this.endTyping === false) {
           this.text += message[index];
         } else {
+          this.endTyping = false;
+          this.isTyping = false;
           clearInterval(interval);
           resolve(message);
-          this.isTyping = false;
           this.text = '';
         }
       }, 30);
