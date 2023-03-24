@@ -26,13 +26,16 @@
         <app-loading
           *ngIf="!typingService.isTyping; else other_content"
         ></app-loading>
-        <ng-template #other_content>{{ typingService.text }}</ng-template>
+        <ng-template #other_content
+          >{{ typingService.text }}
+
+          <button class="end__typing__btn" (click)="handleEndTyping()">
+            End Typing
+          </button>
+        </ng-template>
         {{ dump.scrollIntoView() }}
       </div>
     </div>
-    <button class="end__typing__btn" (click)="handleEndTyping()">
-      End Typing
-    </button>
   </div>
 </div>
 <div #dump></div>

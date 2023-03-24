@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ChatService } from 'src/app/services/chat.service';
 import { TypingService } from 'src/app/services/typing.service';
 
@@ -10,6 +10,8 @@ import { TypingService } from 'src/app/services/typing.service';
 })
 export class FooterComponent {
   message = '';
+
+  @ViewChild('txt_message') txt_message: ElementRef<HTMLTextAreaElement> = null!;
 
   constructor(
     public typingService: TypingService,
@@ -46,6 +48,7 @@ export class FooterComponent {
           message: message,
         });
         this.chatService.isLoading = false;
+        this.txt_message.nativeElement.focus();
       },
       error: (error: HttpErrorResponse) => {
         let message = '';
@@ -57,6 +60,7 @@ export class FooterComponent {
         console.log(error.error);
         alert(message);
         this.chatService.isLoading = false;
+        this.txt_message.nativeElement.focus();
       },
     });
   }
