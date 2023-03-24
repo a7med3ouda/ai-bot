@@ -11,7 +11,7 @@ import { TypingService } from 'src/app/services/typing.service';
 export class FooterComponent {
   message = '';
 
-  @ViewChild('txt_message') txt_message: ElementRef<HTMLTextAreaElement> = null!;
+  @ViewChild('txt_message') txt_message!: ElementRef;
 
   constructor(
     public typingService: TypingService,
